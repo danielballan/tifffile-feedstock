@@ -55,13 +55,6 @@ conda info
     
 
     set -x
-    export CONDA_NPY=18
-    export CONDA_PY=35
-    set +x
-    conda build --no-test /recipe_root || exit 1
-    
-
-    set -x
     export CONDA_NPY=19
     export CONDA_PY=27
     set +x
@@ -108,13 +101,6 @@ conda info
     
     export CONDA_NPY=18
     export CONDA_PY=34
-    
-    conda build --test /recipe_root || exit 1
-    
-    /feedstock_root/ci_support/upload_or_check_non_existence.py /recipe_root conda-forge --channel=main || exit 1
-    
-    export CONDA_NPY=18
-    export CONDA_PY=35
     
     conda build --test /recipe_root || exit 1
     

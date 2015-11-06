@@ -44,8 +44,8 @@ def upload(cli, meta, owner, channels):
     try:
         with open('binstar.token', 'w') as fh:
             fh.write(cli.token)
-        subprocess.check_call(['anaconda', '--quiet', '-t', 'binstar.token',
-                               'upload', bldpkg_path(meta),
+        subprocess.check_call(['anaconda', '--quiet', '-t', 'binstar.token', 
+                               'upload', '--force', bldpkg_path(meta),
                                '--user={}'.format(owner),
                                '--channel={}'.format(channels)],
                               env=os.environ)
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     cli = get_binstar(argparse.Namespace(token=token, site=None))
     meta = MetaData(recipe_dir)
-    exists = built_distribution_already_exists(cli, meta, owner)
+    exists = False # built_distribution_already_exists(cli, meta, owner)
     if token:
         on_channel = distribution_exists_on_channel(cli, meta, owner, channel)
         if not exists:
